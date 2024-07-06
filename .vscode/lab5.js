@@ -6,7 +6,7 @@ function handleSubmit() {
     var dob = document.getElementById('dob').value;
 
     if (!firstName || !lastName || !email || !password || !dob) {
-        alert("All fields are required.");
+        alert("All fields are needed.");
         return false;
     }
 
