@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordering Website</title>
+</head>
+<body>
+    <h1>Welcome to Our Store</h1>
+    <div id="orderSummary"></div>
+
+    <script type="text/javascript">
+
+        window.alert("Welcome to Usman's shop!");
+
+        // Prompt to get customer's details
+        var customerName = window.prompt("Please enter your name:");
+        var itemRequested = window.prompt("What item would you like to order?");
+        var numberOfItems = window.prompt("How many items would you like to order (1-99)?");
+
+        // Validate the number of items
+        numberOfItems = parseInt(numberOfItems);
+        if (isNaN(numberOfItems) || numberOfItems < 1 || numberOfItems > 99) {
+            window.alert("Please enter a valid number of items between 1 and 99.");
+            numberOfItems = window.prompt("How many items would you like to order (1-99)?");
+            numberOfItems = parseInt(numberOfItems);
+        }
+
+        // Get the current date and calculate the arrival date (7 days from now)
+        var currentDate = new Date();
+        var arrivalDate = new Date();
+        arrivalDate.setDate(currentDate.getDate() + 7);
+
+        // Format the arrival date
+        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+        var formattedArrivalDate = arrivalDate.toLocaleDateString(undefined, options);
+
+        // Generate the greeting message
+        var greeting;
+        var currentHour = currentDate.getHours();
+        if (currentHour < 12) {
+            greeting = "Good Morning";
+        } else if (currentHour < 18) {
+            greeting = "Good Afternoon";
+        } else {
+            greeting = "Good Evening";
+        }
+
+        // Display the order summary on the webpage
+        document.getElementById("orderSummary").innerHTML = `
+            <p>${greeting} ${customerName},</p>
+            <p>Thank you for ordering ${numberOfItems} ${itemRequested}(s)!</p>
+            <p>Your order will arrive on: ${formattedArrivalDate}</p>
+        `;
+    </script>
+</body>
+</html>
